@@ -7,6 +7,9 @@ import log_formats
 import shutil
 import Levenshtein
 
+import logging
+logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
+
 def __knext(iterat, k):
 	result = []
 	for i,item in enumerate(iterat):
@@ -60,9 +63,9 @@ class BucketsStoreOnDisk(object):#TODO: make a proper class hierarchy ;)
 		self.fuzzy_fields = fuzzy_fields[:]
 		self.exact_fields = exact_fields[:]
 		self.hash_dict = dict()
-	
+
 	def _hashit(self, strng):
-		#todo: don't hash small values and only strings containing problematic OS/fs characters 
+		#todo: don't hash small values and only strings containing problematic OS/fs characters
 		if strng not in self.hash_dict:
 			m = hashlib.md5()
 			m.update(strng)
@@ -113,8 +116,9 @@ class OnDiskFuzzySummarizer(object):
 				all_pairs.append( ( OnDiskFuzzySummarizer._multifield_ratio(l1, l2, field_weights), l1, l2 ) )
 		all_pairs.sort()
 		all_pairs.reverse()
-		
+
 		for best_ratio, l1, l2 in all_pairs:
 			if best_ratio >= similarity_threshold:
+				logging.debug("".join(l1) + '<-->' + "".join(l2))
 				unique_lines[l2] = False#chooses to eliminate l2
 		return initial_size, (x for x in unique_lines if unique_lines[x])

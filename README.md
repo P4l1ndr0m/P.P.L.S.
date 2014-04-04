@@ -1,21 +1,24 @@
 <pre>
-     ___       ___                    ___     
-    /\  \     /\  \                  /\__\    
-   /::\  \   /::\  \                /:/ _/_   
-  /:/\:\__\ /:/\:\__\              /:/ /\  \  
- /:/ /:/  //:/ /:/  /___     ___  /:/ /::\  \ 
+     ___       ___                    ___
+    /\  \     /\  \                  /\__\
+   /::\  \   /::\  \                /:/ _/_
+  /:/\:\__\ /:/\:\__\              /:/ /\  \
+ /:/ /:/  //:/ /:/  /___     ___  /:/ /::\  \
 /:/_/:/  //:/_/:/  //\  \   /\__\/:/_/:/\:\__\
 \:\/:/  / \:\/:/  / \:\  \ /:/  /\:\/:/ /:/  /
- \::/__/   \::/__/   \:\  /:/  /  \::/ /:/  / 
-  \:\  \    \:\  \    \:\/:/  /    \/_/:/  /  
-   \:\__\    \:\__\    \::/  /       /:/  /   
-    \/__/     \/__/     \/__/        \/__/    
+ \::/__/   \::/__/   \:\  /:/  /  \::/ /:/  /
+  \:\  \    \:\  \    \:\/:/  /    \/_/:/  /
+   \:\__\    \:\__\    \::/  /       /:/  /
+    \/__/     \/__/     \/__/        \/__/
 
 </pre>
 
 ## Probabilistic Production Log Summarizer
 
 This program simplifies your production logs using a combination of probabilistic and exact near(est)-neighbor clustering techniques. The goal is to **automagically** produce a very good representative subset of your log even with important volume of data.
+
+## Usage example:
+> python main.py --fuzzy_fields log_message,100 --exact_fields severity --similarity_threshold 0.89 --logfile log_samples/error_log  --log_format errorlog_apache
 
 ## Supported log formats:
 With a bit of plugin coding, it is posible to analyse virtually any kind of textual logs (see exemple at the end of this page). But out of the box, we support:
