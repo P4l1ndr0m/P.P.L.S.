@@ -24,3 +24,8 @@ extract_rule = re.compile( '\[(?P<date>[^\]]+)\]\s\[(?P<severity>[^\]]+)\](?P<lo
 def errorlog_apache( the_line ):
 	return extract_rule.match(the_line).groupdict()
 
+### syslog_default
+
+extract_rule = re.compile( '(?P<date>([^\s]+)\s+([^\s]+)\s([^\s]+)\s)(?P<server_service>[^\[]+)\[\d+\]:\s\[[^\]]+\]\s(?P<syslog_message>.*)' )
+def syslog_default( the_line ):
+	return extract_rule.match(the_line).groupdict()

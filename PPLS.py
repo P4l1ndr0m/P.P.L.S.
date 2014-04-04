@@ -47,7 +47,7 @@ class LogTokenizer(object):
 			try:
 				next_line_tokens = self.token_extractor(next_line)
 			except AttributeError, e:
-				print e
+				# print next_line
 				continue
 			yield next_line_tokens
 
@@ -119,6 +119,6 @@ class OnDiskFuzzySummarizer(object):
 
 		for best_ratio, l1, l2 in all_pairs:
 			if best_ratio >= similarity_threshold:
-				logging.debug("".join(l1) + '<-->' + "".join(l2))
+				# logging.debug("".join(l1) + '<-->' + "".join(l2))
 				unique_lines[l2] = False#chooses to eliminate l2
 		return initial_size, (x for x in unique_lines if unique_lines[x])
